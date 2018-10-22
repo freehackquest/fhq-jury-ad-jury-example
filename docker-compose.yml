@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  gameExampleDb:
+    image: mysql:5.7
+    volumes:
+      - "/opt/game-example/docker_db/mysql:/var/lib/mysql"
+      - "/opt/game-example/docker_db/initdb:/docker-entrypoint-initdb.d"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: KzhyntJxwt
+      MYSQL_DATABASE: fhqjuryad
+      MYSQL_USER: fhqjuryad
+      MYSQL_PASSWORD: uW2r0V5kpK
+    networks:
+      - gameExampleNet
+
+  gameExampleJury:
+    depends_on:
+      - gameExampleDb
+    image: game-example/fhq-jury-ad:0.0.2
+    volumes:
+      - "/opt/game-example/jury.d:/usr/share/fhq-jury-ad/jury.d"
+    ports:
+      - "8080:8080"
+    restart: always
+    links:
+      - "gameExampleDb"
+    environment:
+      JURY_DB_HOST: gameExampleDb
+      JURY_DB_PORT: 3306
+      JURY_DB_NAME: fhqjuryad
+      JURY_DB_USER: fhqjuryad
+      JURY_DB_PASSWORD: uW2r0V5kpK
+    networks:
+      - gameExampleNet
+
+volumes:
+  db_data:
+  jury.d:
+
+networks:
+  gameExampleNet:
+    driver: bridge
