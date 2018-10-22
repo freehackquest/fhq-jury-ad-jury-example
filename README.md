@@ -1,5 +1,7 @@
 # FHQ Jury Ad (game example)
 
+Current version: v0.0.2
+
 ## Requriments
 
 * docker
@@ -59,3 +61,9 @@ $ ./build_docker.sh
 * Directory with scoreboard page `jury.d/html`
 * Default port of scroboard: `8080`
 * Acceptance of flag: `$ curl http://192.168.1.6:8080/flag?teamid=1&flag=123e4567-e89b-12d3-a456-426655440000`
+
+## Original source and more information
+
+You can find in repository:
+
+[https://github.com/freehackquest/fhq-jury-ad](https://github.com/freehackquest/fhq-jury-ad)
