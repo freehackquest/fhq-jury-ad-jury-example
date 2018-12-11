@@ -1,2 +1,2 @@
 jury.d/logs/*.log
-docker_db/mysql
+dckr_mysql/

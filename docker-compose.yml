@@ -1,11 +1,10 @@
 version: '2'
 
 services:
-  gameExampleDb:
+  ctfgame0_db:
     image: mysql:5.7
     volumes:
-      - "/opt/game-example/docker_db/mysql:/var/lib/mysql"
-      - "/opt/game-example/docker_db/initdb:/docker-entrypoint-initdb.d"
+      - "./dckr_mysql:/var/lib/mysql"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: KzhyntJxwt
@@ -13,32 +12,22 @@ services:
       MYSQL_USER: fhqjuryad
       MYSQL_PASSWORD: uW2r0V5kpK
     networks:
-      - gameExampleNet
+      - ctf0
 
-  gameExampleJury:
+  ctfgame0_jury:
     depends_on:
-      - gameExampleDb
-    image: game-example/fhq-jury-ad:0.0.2
+      - ctfgame0_db
+    image: ctfgame0/fhq-jury-ad:0.1.0
     volumes:
-      - "/opt/game-example/jury.d:/usr/share/fhq-jury-ad/jury.d"
+      - "./jury.d:/usr/share/fhq-jury-ad/jury.d"
     ports:
       - "8080:8080"
     restart: always
     links:
-      - "gameExampleDb"
-    environment:
-      JURY_DB_HOST: gameExampleDb
-      JURY_DB_PORT: 3306
-      JURY_DB_NAME: fhqjuryad
-      JURY_DB_USER: fhqjuryad
-      JURY_DB_PASSWORD: uW2r0V5kpK
+      - "ctfgame0_db"
     networks:
-      - gameExampleNet
-
-volumes:
-  db_data:
-  jury.d:
+      - ctf0
 
 networks:
-  gameExampleNet:
+  ctf0:
     driver: bridge
