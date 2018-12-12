@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# sudo docker rmi "game-example/fhq-jury-ad:0.0.2"
-sudo docker build --rm=true -t "game-example/fhq-jury-ad:0.0.2" .
+# docker rmi "ctfgame0/fhq-jury-ad:0.1.0"
+docker build --rm=true -t "ctfgame0/fhq-jury-ad:0.1.0" .

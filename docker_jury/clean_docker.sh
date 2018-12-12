@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo docker rmi -f game-example/fhq-jury-ad:0.0.2
-sudo docker rm -f game-example-jury
+docker rmi -f ctfgame0/fhq-jury-ad:0.1.0
+docker rm -f ctfgame0-jury

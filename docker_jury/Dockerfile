@@ -1,22 +1,11 @@
-FROM debian:9.5
+FROM freehackquest/fhq-jury-ad:0.1.0
 
-EXPOSE 8080
-COPY ./fhq-jury-ad/debian/9.5/fhq-jury-ad /usr/bin/fhq-jury-ad
-RUN mkdir /usr/share/fhq-jury-ad
-
-RUN apt-get update && apt-get install -y libcurl3 zlibc zlib1g libpng16-16 libmariadbclient18
-
-RUN apt-get install -y dnsutils
-
-# services dependencies
-
+# some services dependencies
 RUN apt-get install -y python python-requests python-pip libssl-dev
 
-# Fix for building on debian system (mysqlclient library)
-# RUN ln -s /usr/lib/x86_64-linux-gnu/pkgconfig/mariadb.pc /usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
 
-COPY ./apply_new_config.sh /root/apply_new_config.sh
+EXPOSE 8080
 
-CMD /root/apply_new_config.sh && fhq-jury-ad start
+CMD fhq-jury-ad start
 
 
